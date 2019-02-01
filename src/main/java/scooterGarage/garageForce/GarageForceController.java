@@ -17,7 +17,8 @@ public class GarageForceController {
 
     @PutMapping
     ResponseEntity getRequiredFEs(@RequestBody GarageForce garageForce) {
-        String requiredFEs = garageForceService.getRequiredFEs(garageForce);
-        return new ResponseEntity(requiredFEs, HttpStatus.OK);
+        FleetEngineer fleetEngineer = new FleetEngineer();
+        fleetEngineer.fleet_engineers = garageForceService.getRequiredFEs(garageForce);
+        return new ResponseEntity(fleetEngineer, HttpStatus.OK);
     }
 }

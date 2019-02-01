@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
+import scooterGarage.garageForce.FleetEngineer;
 import scooterGarage.garageForce.GarageForce;
 
 @RunWith(SpringRunner.class)
@@ -24,10 +25,10 @@ public class ScooterGarageApplicationTests {
 		int[] scooters = {15, 10};
 		GarageForce garageForce = new GarageForce(scooters, 12, 5);
 		HttpEntity<GarageForce> entity = new HttpEntity<>(garageForce);
-		ResponseEntity<String> response = template.exchange(("/"),HttpMethod.PUT, entity, String.class);
+		ResponseEntity<FleetEngineer> response = template.exchange(("/"),HttpMethod.PUT, entity, FleetEngineer.class);
 		
 		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
-		Assert.assertEquals("{fleet_engineers: 3}", response.getBody());
+		Assert.assertEquals(3, response.getBody().getFleet_engineers());
 	}
 
 	@Test
@@ -35,10 +36,10 @@ public class ScooterGarageApplicationTests {
 		int[] scooters = {11, 15, 13};
 		GarageForce garageForce = new GarageForce(scooters, 9, 5);
 		HttpEntity<GarageForce> entity = new HttpEntity<>(garageForce);
-		ResponseEntity<String> response = template.exchange(("/"),HttpMethod.PUT, entity, String.class);
+		ResponseEntity<FleetEngineer> response = template.exchange(("/"),HttpMethod.PUT, entity, FleetEngineer.class);
 
 		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
-		Assert.assertEquals("{fleet_engineers: 7}", response.getBody());
+		Assert.assertEquals(7, response.getBody().getFleet_engineers());
 	}
 
 	@Test
@@ -46,10 +47,10 @@ public class ScooterGarageApplicationTests {
 		int[] scooters = {8,16,17,29,40};
 		GarageForce garageForce = new GarageForce(scooters, 12, 8);
 		HttpEntity<GarageForce> entity = new HttpEntity<>(garageForce);
-		ResponseEntity<String> response = template.exchange(("/"),HttpMethod.PUT, entity, String.class);
+		ResponseEntity<FleetEngineer> response = template.exchange(("/"),HttpMethod.PUT, entity, FleetEngineer.class);
 
 		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
-		Assert.assertEquals("{fleet_engineers: 13}", response.getBody());
+		Assert.assertEquals(13, response.getBody().getFleet_engineers());
 	}
 
 	@Test
@@ -57,10 +58,10 @@ public class ScooterGarageApplicationTests {
 		int[] scooters = {8,16,17,18,19,20};
 		GarageForce garageForce = new GarageForce(scooters, 12, 8);
 		HttpEntity<GarageForce> entity = new HttpEntity<>(garageForce);
-		ResponseEntity<String> response = template.exchange(("/"),HttpMethod.PUT, entity, String.class);
+		ResponseEntity<FleetEngineer> response = template.exchange(("/"),HttpMethod.PUT, entity, FleetEngineer.class);
 
 		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
-		Assert.assertEquals("{fleet_engineers: 13}", response.getBody());
+		Assert.assertEquals(13, response.getBody().getFleet_engineers());
 	}
 
 	@Test
@@ -68,9 +69,9 @@ public class ScooterGarageApplicationTests {
 		int[] scooters = {0,1000,500,10,13,999};
 		GarageForce garageForce = new GarageForce(scooters, 85, 900);
 		HttpEntity<GarageForce> entity = new HttpEntity<>(garageForce);
-		ResponseEntity<String> response = template.exchange(("/"),HttpMethod.PUT, entity, String.class);
+		ResponseEntity<FleetEngineer> response = template.exchange(("/"),HttpMethod.PUT, entity, FleetEngineer.class);
 
 		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
-		Assert.assertEquals("{fleet_engineers: 6}", response.getBody());
+		Assert.assertEquals(6, response.getBody().getFleet_engineers());
 	}
 }
